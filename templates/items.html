@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>Manage Items</h2>
+
+<!-- Add/Edit Form -->
+<form method="POST" action="{{ url_for('main.edit_item', item_id=item_to_edit.id) if item_to_edit else url_for('main.items') }}">
+    <input type="text" name="name" placeholder="Name" required value="{{ item_to_edit.name if item_to_edit else '' }}">
+    <input type="number" name="quantity" placeholder="Quantity" required value="{{ item_to_edit.quantity if item_to_edit else '' }}">
+    <input type="number" step="0.01" name="price" placeholder="Price" required value="{{ item_to_edit.price if item_to_edit else '' }}">
+    <button type="submit">{{ 'Update' if item_to_edit else 'Add' }}</button>
+    {% if item_to_edit %}
+        <a href="{{ url_for('main.items') }}">Cancel</a>
+    {% endif %}
+</form>
+
+<hr>
+
+<!-- List of Items -->
+<ul>
+    {% for item in items %}
+    <li>
+        {{ item.name }} | Qty: {{ item.quantity }} | ${{ item.price }}
+        <a href="{{ url_for('main.edit_item', item_id=item.id) }}">Edit</a>
+        <form method="POST" action="{{ url_for('main.remove_item', item_id=item.id) }}" style="display:inline;">
+            <button type="submit">Delete</button>
+        </form>
+    </li>
+    {% endfor %}
+</ul>
+{% endblock %}
