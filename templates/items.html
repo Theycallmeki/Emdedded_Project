@@ -23,7 +23,7 @@
         {{ item.name }} | Qty: {{ item.quantity }} | ${{ item.price }}
         <a href="{{ url_for('main.edit_item', item_id=item.id) }}">Edit</a>
         <form method="POST" action="{{ url_for('main.remove_item', item_id=item.id) }}" style="display:inline;">
-            <button type="submit">Delete</button>
+            <button type="submit">Deletez</button>
         </form>
     </li>
     {% endfor %}
