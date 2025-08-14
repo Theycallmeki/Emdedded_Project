@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<h2>Manage Items</h2>
+<h2>Manage Items.</h2>
 
 <!-- Add/Edit Form -->
 <form method="POST" action="{{ url_for('main.edit_item', item_id=item_to_edit.id) if item_to_edit else url_for('main.items') }}">
